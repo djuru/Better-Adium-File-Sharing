@@ -1,0 +1,282 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		BB336ABA152A3CC300E7C10F /* BetterAdiumFileSharing.m in Sources */ = {isa = PBXBuildFile; fileRef = BB336AB9152A3CC300E7C10F /* BetterAdiumFileSharing.m */; };
+		BB781EF8152A393F0011F291 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB781EF7152A393F0011F291 /* Cocoa.framework */; };
+		BB781F02152A39400011F291 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = BB781F00152A39400011F291 /* InfoPlist.strings */; };
+		BB781F0A152A3C500011F291 /* Adium.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB781F09152A3C500011F291 /* Adium.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		BB336AB8152A3CC300E7C10F /* BetterAdiumFileSharing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BetterAdiumFileSharing.h; sourceTree = "<group>"; };
+		BB336AB9152A3CC300E7C10F /* BetterAdiumFileSharing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BetterAdiumFileSharing.m; sourceTree = "<group>"; };
+		BB781EF4152A393F0011F291 /* Better-Adium-File-Sharing.AdiumPlugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Better-Adium-File-Sharing.AdiumPlugin"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BB781EF7152A393F0011F291 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		BB781EFA152A393F0011F291 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		BB781EFB152A393F0011F291 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		BB781EFC152A393F0011F291 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		BB781EFF152A39400011F291 /* Better-Adium-File-Sharing-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Better-Adium-File-Sharing-Info.plist"; sourceTree = "<group>"; };
+		BB781F01152A39400011F291 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		BB781F03152A39400011F291 /* Better-Adium-File-Sharing-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Better-Adium-File-Sharing-Prefix.pch"; sourceTree = "<group>"; };
+		BB781F09152A3C500011F291 /* Adium.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Adium.framework; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		BB781EF1152A393F0011F291 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BB781EF8152A393F0011F291 /* Cocoa.framework in Frameworks */,
+				BB781F0A152A3C500011F291 /* Adium.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		BB781EE9152A393F0011F291 = {
+			isa = PBXGroup;
+			children = (
+				BB336AB8152A3CC300E7C10F /* BetterAdiumFileSharing.h */,
+				BB336AB9152A3CC300E7C10F /* BetterAdiumFileSharing.m */,
+				BB781EFD152A393F0011F291 /* Better-Adium-File-Sharing */,
+				BB781EF6152A393F0011F291 /* Frameworks */,
+				BB781EF5152A393F0011F291 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		BB781EF5152A393F0011F291 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BB781EF4152A393F0011F291 /* Better-Adium-File-Sharing.AdiumPlugin */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BB781EF6152A393F0011F291 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BB781EF7152A393F0011F291 /* Cocoa.framework */,
+				BB781EF9152A393F0011F291 /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BB781EF9152A393F0011F291 /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BB781F09152A3C500011F291 /* Adium.framework */,
+				BB781EFA152A393F0011F291 /* AppKit.framework */,
+				BB781EFB152A393F0011F291 /* CoreData.framework */,
+				BB781EFC152A393F0011F291 /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		BB781EFD152A393F0011F291 /* Better-Adium-File-Sharing */ = {
+			isa = PBXGroup;
+			children = (
+				BB781EFE152A39400011F291 /* Supporting Files */,
+			);
+			path = "Better-Adium-File-Sharing";
+			sourceTree = "<group>";
+		};
+		BB781EFE152A39400011F291 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				BB781EFF152A39400011F291 /* Better-Adium-File-Sharing-Info.plist */,
+				BB781F00152A39400011F291 /* InfoPlist.strings */,
+				BB781F03152A39400011F291 /* Better-Adium-File-Sharing-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		BB781EF3152A393F0011F291 /* Better-Adium-File-Sharing */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BB781F06152A39400011F291 /* Build configuration list for PBXNativeTarget "Better-Adium-File-Sharing" */;
+			buildPhases = (
+				BB781EF0152A393F0011F291 /* Sources */,
+				BB781EF1152A393F0011F291 /* Frameworks */,
+				BB781EF2152A393F0011F291 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Better-Adium-File-Sharing";
+			productName = "Better-Adium-File-Sharing";
+			productReference = BB781EF4152A393F0011F291 /* Better-Adium-File-Sharing.AdiumPlugin */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BB781EEB152A393F0011F291 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+			};
+			buildConfigurationList = BB781EEE152A393F0011F291 /* Build configuration list for PBXProject "Better-Adium-File-Sharing" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = BB781EE9152A393F0011F291;
+			productRefGroup = BB781EF5152A393F0011F291 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				BB781EF3152A393F0011F291 /* Better-Adium-File-Sharing */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		BB781EF2152A393F0011F291 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BB781F02152A39400011F291 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		BB781EF0152A393F0011F291 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BB336ABA152A3CC300E7C10F /* BetterAdiumFileSharing.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		BB781F00152A39400011F291 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BB781F01152A39400011F291 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		BB781F04152A39400011F291 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		BB781F05152A39400011F291 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		BB781F07152A39400011F291 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Better-Adium-File-Sharing/Better-Adium-File-Sharing-Prefix.pch";
+				INFOPLIST_FILE = "Better-Adium-File-Sharing/Better-Adium-File-Sharing-Info.plist";
+				INSTALL_PATH = "$(HOME)/Library/Application Support/Adium 2.0/PlugIns/";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = AdiumPlugin;
+			};
+			name = Debug;
+		};
+		BB781F08152A39400011F291 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Better-Adium-File-Sharing/Better-Adium-File-Sharing-Prefix.pch";
+				INFOPLIST_FILE = "Better-Adium-File-Sharing/Better-Adium-File-Sharing-Info.plist";
+				INSTALL_PATH = "$(HOME)/Library/Application Support/Adium 2.0/PlugIns/";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = AdiumPlugin;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		BB781EEE152A393F0011F291 /* Build configuration list for PBXProject "Better-Adium-File-Sharing" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BB781F04152A39400011F291 /* Debug */,
+				BB781F05152A39400011F291 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BB781F06152A39400011F291 /* Build configuration list for PBXNativeTarget "Better-Adium-File-Sharing" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BB781F07152A39400011F291 /* Debug */,
+				BB781F08152A39400011F291 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = BB781EEB152A393F0011F291 /* Project object */;
+}

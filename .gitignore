@@ -1,1 +1,15 @@
+*.DS_Store
+*Adium.framework/*
+*.pbxuser
+*.mode1v3
+*.mode2v3
+*.perspectivev3
+*.xcuserstate
+project.xcworkspace/
+xcuserdata/
+*.o
+*.swp
+*~.nib
+*.xcodeproj/xcuserdata/*.xcuserdatad
+*.xcodeproj/project.xcworkspace/xcuserdata/*.xcuserdatad
 .DS_Store
