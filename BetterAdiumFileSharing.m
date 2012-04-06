@@ -80,8 +80,15 @@
                                                                      action:@selector(chooseFilesToSend:)
                                                             menu:nil];
     [[adium toolbarController] registerToolbarItem:chatItem forToolbarType:@"ListObject"];
-
     
+}
+/*
+ * * * * * * * * * * * * * * * * * * * * * 
+ Before uninstall
+ * * * * * * * * * * * * * * * * * * * * *
+ */
+- (void) uninstallPlugin
+{
 }
 
 /*
@@ -101,12 +108,40 @@
 
     // If the SEND pressed, process the files
     if ( [openDlg runModal] == NSOKButton ) {
+        
         // Gets list of all files selected
         NSArray *files = [openDlg URLs];
+        
         // ========== copy files ==========
-        // ========== send messages ==========
+
+        //send all links to user
+        for( int i = 0; i < [files count]; i++ ) 
+        {
+            NSString  *message; //[[files objectAtIndex:i] path]
+            //create message
+            //send message
+        }
     }
     
+}
+
+/*
+ * * * * * * * * * * * * * * * * * * * * * 
+  Sends message to current user in dialog
+ * * * * * * * * * * * * * * * * * * * * *
+ */
+-(void) sendMessage: (NSString *) message 
+{
+
+    AIListContact *contact = [[[adium interfaceController] activeChat] listObject]; 
+    NSAttributedString *messageAttrStr = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:message]];
+    AIAccount *account = [[adium accountController] preferredAccountForSendingContentType:CONTENT_MESSAGE_TYPE toContact:contact];
+    AIChat *chat = [[adium chatController] chatWithContact:contact];
+    AIContentMessage *message2 = [[AIContentMessage alloc] initWithChat:chat source:account destination:contact date:[NSDate date] message:messageAttrStr];
+    
+    [[adium contentController] sendContentObject:message2];
+
+
 }
 /*
  * * * * * * * * * * * * * * * * * * * * * 
@@ -119,11 +154,10 @@
     for( int i = 0; i < [files count]; i++ ) 
     {
         NSString* filePath = [[files objectAtIndex:i] path];
+        // ==========  copy them  ========== 
+        
     }
 }
 
-- (void) uninstallPlugin
-{
-}
 
 @end
