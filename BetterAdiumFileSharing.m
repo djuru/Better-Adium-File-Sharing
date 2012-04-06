@@ -11,7 +11,7 @@
 
 #import <Adium/ESFileTransfer.h>
 #import <AIUtilities/AIToolbarUtilities.h>
-#import <AIUtilities/AIStringUtilities.h>
+#import <Adium/AIPreferenceControllerProtocol.h>
 #import <Adium/AIPreferenceControllerProtocol.h>
 
 #import "BetterAdiumFileSharing.h"
@@ -19,8 +19,8 @@
 
 
 #define	TOOLBAR_ICON_IDENTIFIER		@"Better Adium File Sharing"
-#define	ICON_TITLE                      AILocalizedString(@"Better Adium File Sharing",nil)
-#define	ICON_TOOLTIP			AILocalizedString(@"Share via Dropbox",nil)
+#define	ICON_TITLE                  @"Better Adium File Sharing"
+#define	ICON_TOOLTIP                @"Share via Dropbox"
 
 @implementation BetterAdiumFileSharing
 
@@ -66,8 +66,10 @@
  */
 - (void) installPlugin
 {
+    //Preferences view
+    preferences = [[SFPreferences sharedInstance] retain];
     
-    
+    //Set icon for plugin
     NSToolbarItem	*chatItem = [AIToolbarUtilities toolbarItemWithIdentifier: TOOLBAR_ICON_IDENTIFIER
                                                                         label: ICON_TITLE
                                                                  paletteLabel: ICON_TOOLTIP
@@ -76,10 +78,10 @@
                                                              settingSelector:@selector(setImage:)
                                                                 itemContent:[NSImage imageNamed:@"icon" forClass:[self class] loadLazily:YES]
                                                                      action:@selector(chooseFilesToSend:)
-                                                                       menu:nil];
-    
+                                                            menu:nil];
     [[adium toolbarController] registerToolbarItem:chatItem forToolbarType:@"ListObject"];
 
+    
 }
 
 /*
@@ -94,15 +96,15 @@
     // Enable options in the dialog.
     [openDlg setCanChooseFiles:YES];
     [openDlg setAllowsMultipleSelection:YES];
-    [openDlg setPrompt: AILocalizedStringFromTable(@"Send", @"Buttons", nil)];
-	
+    [openDlg setPrompt:  @"Send"];
+     
 
     // If the SEND pressed, process the files
     if ( [openDlg runModal] == NSOKButton ) {
         // Gets list of all files selected
         NSArray *files = [openDlg URLs];
-        //copy files
-        //send messages
+        // ========== copy files ==========
+        // ========== send messages ==========
     }
     
 }

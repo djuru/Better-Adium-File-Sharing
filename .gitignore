@@ -1,5 +1,6 @@
 .DS_Store
 *Adium.framework/*
+*FriBidi.framework/*
 *AIUtilities.framework/*
 *.pbxuser
 *.mode1v3
