@@ -6,8 +6,9 @@
 //  Copyright (c) 2012 cz.murin. All rights reserved.
 //
 
+#import <Adium/AIPlugin.h>
 
-
-@interface BetterAdiumFileSharing : NSObject
-
+@interface BetterAdiumFileSharing : NSObject <AIPlugin>
+{
+}
 @end
