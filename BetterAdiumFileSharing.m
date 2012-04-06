@@ -18,12 +18,9 @@
 
 
 
-#define	TOOLBAR_CUSTOM_EMOTICON_IDENTIFIER		@"Better Adium File Sharing"
-#define	TITLE_INSERT_CUSTOM_EMOTICON			AILocalizedString(@"Better Adium File Sharing",nil)
-#define	TOOLTIP_INSERT_CUSTOM_EMOTICON			AILocalizedString(@"Share via Dropbox",nil)
-#define	TITLE_CUSTOM_EMOTICON					AILocalizedString(@"Better Adium File Sharing",nil)
-#define TITLE_ADDAS_CUSTOM_EMOTICON				AILocalizedString(@"Add Better Adium File Sharing",nil)
-#define TITLE_CUSTOM_EMOTICON_PANEL				AILocalizedString(@"Open custom emoticons panel",nil)
+#define	TOOLBAR_ICON_IDENTIFIER		@"Better Adium File Sharing"
+#define	ICON_TITLE                      AILocalizedString(@"Better Adium File Sharing",nil)
+#define	ICON_TOOLTIP			AILocalizedString(@"Share via Dropbox",nil)
 
 @implementation BetterAdiumFileSharing
 
@@ -71,10 +68,10 @@
 {
     
     
-    NSToolbarItem	*chatItem = [AIToolbarUtilities toolbarItemWithIdentifier:TOOLBAR_CUSTOM_EMOTICON_IDENTIFIER
-                                                                        label:TITLE_CUSTOM_EMOTICON
-                                                                 paletteLabel:TITLE_INSERT_CUSTOM_EMOTICON
-                                                                      toolTip:TOOLTIP_INSERT_CUSTOM_EMOTICON
+    NSToolbarItem	*chatItem = [AIToolbarUtilities toolbarItemWithIdentifier: TOOLBAR_ICON_IDENTIFIER
+                                                                        label: ICON_TITLE
+                                                                 paletteLabel: ICON_TOOLTIP
+                                                                      toolTip: ICON_TOOLTIP
                                                                        target:self
                                                              settingSelector:@selector(setImage:)
                                                                 itemContent:[NSImage imageNamed:@"icon" forClass:[self class] loadLazily:YES]
@@ -97,7 +94,7 @@
     // Enable options in the dialog.
     [openDlg setCanChooseFiles:YES];
     [openDlg setAllowsMultipleSelection:YES];
-    [openDlg setPrompt:AILocalizedStringFromTable(@"Send", @"Buttons", nil)];
+    [openDlg setPrompt: AILocalizedStringFromTable(@"Send", @"Buttons", nil)];
 	
 
     // If the SEND pressed, process the files

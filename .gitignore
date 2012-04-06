@@ -1,4 +1,4 @@
-*.DS_Store*
+.DS_Store
 *Adium.framework/*
 *AIUtilities.framework/*
 *.pbxuser
@@ -13,4 +13,5 @@ xcuserdata/
 *~.nib
 *.xcodeproj/xcuserdata/*.xcuserdatad
 *.xcodeproj/project.xcworkspace/xcuserdata/*.xcuserdatad
+.DS_Store
 .DS_Store
