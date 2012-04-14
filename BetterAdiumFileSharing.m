@@ -116,11 +116,6 @@
     
     [[adium contentController] sendContentObject:message2];
     
-    [contact release];
-    [messageAttrStr release];
-    [account release];
-    [chat release];
-    [message2 release];
 }
 
 /*
