@@ -125,6 +125,28 @@
  */
 - (void)chooseFilesToSend:(id)sender 
 {
+    
+    NSString* dropboxPublicDirectory = [[adium preferenceController] preferenceForKey: DROPBOX_PATH group: PREF_GROUP_BAS]; 
+    NSString *dropboxID =  [[adium preferenceController] preferenceForKey: DROPBOX_USER_ID group: PREF_GROUP_BAS];
+    
+    if( [dropboxID length] == 0 || [dropboxPublicDirectory length] == 0){
+        NSString *question = @"Warning";
+        NSString *info =  @"Please set plugin Better Adium File Sharing at Preferences > Advanced >  Better Adium File Sharing.";
+        NSString *cancelButton = @"OK";
+        
+        NSAlert *alert = [[NSAlert alloc] init];
+        [alert setMessageText:question];
+        [alert setInformativeText:info];
+        [alert addButtonWithTitle:cancelButton];
+        
+        NSInteger answer = [alert runModal];
+        [alert release];
+        alert = nil;
+        
+        
+        return;
+    }
+    
     // Create a File Open Dialog
     NSOpenPanel* openDlg = [NSOpenPanel openPanel];
     // Enable options in the dialog.
@@ -151,7 +173,6 @@
  */
 -(void) copyFiles: (NSArray *)files
 {
-    [self sendMessage:@"Copying"];
     
     NSString* dropboxPublicDirectory = [[adium preferenceController] preferenceForKey: DROPBOX_PATH group: PREF_GROUP_BAS]; 
     NSString *dropboxID =  [[adium preferenceController] preferenceForKey: DROPBOX_USER_ID group: PREF_GROUP_BAS];
@@ -242,9 +263,7 @@
         
         
     }
-    
-    [fileManager release];
-    
+        
     return newName;
     
 }
