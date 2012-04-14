@@ -120,16 +120,24 @@ static SFPreferences	*sharedInstance = nil;
 - (void)viewDidLoad
 {
     
-    //load Dropbox User ID
-    duid = [[adium preferenceController] preferenceForKey: DROPBOX_USER_ID group:PREF_GROUP_BAS];
+    NSString* dropboxPublicDirectory = [[adium preferenceController] preferenceForKey: DROPBOX_PATH group: PREF_GROUP_BAS]; 
+    NSString *dropboxID =  [[adium preferenceController] preferenceForKey: DROPBOX_USER_ID group: PREF_GROUP_BAS];
+    
+    if( [dropboxID length] == 0 || [dropboxPublicDirectory length] == 0){
+    
+        //load Dropbox User ID
+        duid = dropboxID;
    
-    //Load path to Dropbox public folder
-    [textPath setStringValue: [[adium preferenceController] preferenceForKey: DROPBOX_PATH group:PREF_GROUP_BAS]];
+        //Load path to Dropbox public folder
+        [textPath setStringValue: dropboxPublicDirectory];
     
-    
+    }
 	[super viewDidLoad];
 }
-
+- (IBAction)openPage:(id)sender 
+{
+    [[NSWorkspace sharedWorkspace] openURL: [NSURL URLWithString:@"http://betteradiumfiles.murin.cz"]];
+}
 /*
  * * * * * * * * * * * * * * * * * * * * * 
     Before the is view loaded
