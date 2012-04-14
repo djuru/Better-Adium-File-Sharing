@@ -22,7 +22,7 @@ static SFPreferences	*sharedInstance = nil;
 
 /*
  * * * * * * * * * * * * * * * * * * * * * 
-    Return shared instance
+ Return shared instance
  * * * * * * * * * * * * * * * * * * * * *
  */
 + (SFPreferences *)sharedInstance
@@ -38,7 +38,7 @@ static SFPreferences	*sharedInstance = nil;
 
 /*
  * * * * * * * * * * * * * * * * * * * * * 
-    Returns plugin category
+ Returns plugin category
  * * * * * * * * * * * * * * * * * * * * *
  */
 - (AIPreferenceCategory)category
@@ -58,7 +58,7 @@ static SFPreferences	*sharedInstance = nil;
 
 /*
  * * * * * * * * * * * * * * * * * * * * * 
-    Return
+ Return
  * * * * * * * * * * * * * * * * * * * * *
  */
 - (NSString *)nibName
@@ -68,22 +68,22 @@ static SFPreferences	*sharedInstance = nil;
 
 /*
  * * * * * * * * * * * * * * * * * * * * * 
-    Returns plugin icon
+ Returns plugin icon
  * * * * * * * * * * * * * * * * * * * * *
  */
 - (NSImage *)image
 {
-
+    
     NSString* imageName = [[NSBundle bundleForClass:[self class]] pathForResource:@"icon" ofType:@"png"];
 	NSImage* imageObj = [[NSImage alloc] initWithContentsOfFile:imageName];
 	[imageObj autorelease];
 	return imageObj;
-
+    
 }
 
 /*
  * * * * * * * * * * * * * * * * * * * * * 
-    Returns plugin category
+ Returns plugin category
  * * * * * * * * * * * * * * * * * * * * *
  */
 - (NSView *)view
@@ -93,11 +93,11 @@ static SFPreferences	*sharedInstance = nil;
 
 /*
  * * * * * * * * * * * * * * * * * * * * * 
-    Open Dialog to choose folder
+ Open Dialog to choose folder
  * * * * * * * * * * * * * * * * * * * * *
  */
 - (IBAction)setTextF:(id)sender {
-
+    
     // Create a File Open Dialog 
     NSOpenPanel* openDlg = [NSOpenPanel openPanel];
     
@@ -114,33 +114,36 @@ static SFPreferences	*sharedInstance = nil;
 
 /*
  * * * * * * * * * * * * * * * * * * * * * 
-    After the is view loaded
+ After the is view loaded
  * * * * * * * * * * * * * * * * * * * * *
  */
 - (void)viewDidLoad
 {
     
-    NSString* dropboxPublicDirectory = [[adium preferenceController] preferenceForKey: DROPBOX_PATH group: PREF_GROUP_BAS]; 
-    NSString *dropboxID =  [[adium preferenceController] preferenceForKey: DROPBOX_USER_ID group: PREF_GROUP_BAS];
     
-    if( [dropboxID length] == 0 || [dropboxPublicDirectory length] == 0){
     
-        //load Dropbox User ID
-        duid = dropboxID;
-   
-        //Load path to Dropbox public folder
-        [textPath setStringValue: dropboxPublicDirectory];
+    //load Dropbox User ID
+    duid = [[adium preferenceController] preferenceForKey: DROPBOX_USER_ID group: PREF_GROUP_BAS];
     
-    }
+    //Load path to Dropbox public folder
+    [textPath setStringValue: [[adium preferenceController] preferenceForKey: DROPBOX_PATH group: PREF_GROUP_BAS]]; 
+    
+    
+    
 	[super viewDidLoad];
-}
-- (IBAction)openPage:(id)sender 
-{
-    [[NSWorkspace sharedWorkspace] openURL: [NSURL URLWithString:@"http://betteradiumfiles.murin.cz"]];
 }
 /*
  * * * * * * * * * * * * * * * * * * * * * 
-    Before the is view loaded
+    Open webpages with guide
+ * * * * * * * * * * * * * * * * * * * * *
+ */
+- (IBAction)openPage:(id)sender 
+{
+    [[NSWorkspace sharedWorkspace] openURL: [NSURL URLWithString:@"http://betteradiumfiles.murin.cz/index.html#SettingBAS"]];
+}
+/*
+ * * * * * * * * * * * * * * * * * * * * * 
+ Before the is view loaded
  * * * * * * * * * * * * * * * * * * * * *
  */
 - (void)viewWillClose
