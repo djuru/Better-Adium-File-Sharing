@@ -116,7 +116,11 @@
     
     [[adium contentController] sendContentObject:message2];
     
-    
+    [contact release];
+    [messageAttrStr release];
+    [account release];
+    [chat release];
+    [message2 release];
 }
 
 /*
@@ -126,7 +130,6 @@
  */
 - (void)chooseFilesToSend:(id)sender 
 {
-    
     // Create a File Open Dialog
     NSOpenPanel* openDlg = [NSOpenPanel openPanel];
     // Enable options in the dialog.
@@ -139,20 +142,22 @@
     if ( [openDlg runModal] == NSOKButton ) {
         
         // Gets list of all files selected
-        NSArray *files = [openDlg URLs];
+        NSArray *files = [openDlg URLs];        
         [self copyFiles:files];
         
     }
     
 }
+
 /*
  * * * * * * * * * * * * * * * * * * * * * 
  Copy all files do Dropbox Public folder 
- -- detached thread
  * * * * * * * * * * * * * * * * * * * * *
  */
 -(void) copyFiles: (NSArray *)files
 {
+    [self sendMessage:@"Copying"];
+    
     NSString* dropboxPublicDirectory = [[adium preferenceController] preferenceForKey: DROPBOX_PATH group: PREF_GROUP_BAS]; 
     NSString *dropboxID =  [[adium preferenceController] preferenceForKey: DROPBOX_USER_ID group: PREF_GROUP_BAS];
     
@@ -164,7 +169,7 @@
         NSString* fileToSendName = [[fileToSendPath componentsSeparatedByString:@"/"] lastObject];
         NSString* fileToSendNewName = [self unifyName:fileToSendName :dropboxPublicDirectory];
         NSString* toCopy = [dropboxPublicDirectory stringByAppendingFormat:@"/%@", fileToSendNewName];
-
+        
         NSError *error = nil;
         //error while copying
         if (![[NSFileManager defaultManager] copyItemAtPath:fileToSendPath toPath:toCopy error:&error])
@@ -187,15 +192,17 @@
         //copying succeeded    
         else
         {    
-            NSString* msg = @"Link will be shortly available: ";
+            //create link and send it to user
+            NSString* msg = @"Link will be shortly available to download: ";
             msg = [msg stringByAppendingFormat:@"%@", @"http://dl.dropbox.com/u/"];
             msg = [msg stringByAppendingFormat:@"%@", dropboxID];
             msg = [msg stringByAppendingFormat:@"%@", @"/"];
             msg = [msg stringByAppendingFormat:@"%@", fileToSendNewName];      
             
             [self sendMessage:msg];
-
         }
+        
+           
     }
 }
 /*
@@ -225,7 +232,7 @@
         dateString = [dateString stringByAppendingFormat:@"%@", @"_"];
         dateString = [dateString stringByAppendingFormat:@"%@", [NSString stringWithFormat:@"%d", arc4random() % 1000000]];
         
-        NSArray *chunks = [fileName componentsSeparatedByString: @"."];
+        NSArray *chunks = [newName componentsSeparatedByString: @"."];
         NSString *name = [chunks objectAtIndex:0];
         NSString* ending = [chunks lastObject];
         
@@ -240,6 +247,8 @@
         
         
     }
+    
+    [fileManager release];
     
     return newName;
     
