@@ -257,13 +257,21 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				CLANG_ANALYZER_DEADCODE_DEADSTORES = YES;
 				CLANG_ENABLE_OBJC_ARC = NO;
+				CLANG_WARN_CXX0X_EXTENSIONS = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Better-Adium-File-Sharing/Better-Adium-File-Sharing-Prefix.pch";
+				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = YES;
+				GCC_WARN_ABOUT_INVALID_OFFSETOF_MACRO = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VALUE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IBC_WARNINGS = YES;
 				INFOPLIST_FILE = "Better-Adium-File-Sharing/Better-Adium-File-Sharing-Info.plist";
 				INSTALL_PATH = "$(HOME)/Library/Application Support/Adium 2.0/PlugIns/";
 				ONLY_ACTIVE_ARCH = NO;
@@ -276,13 +284,21 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				CLANG_ANALYZER_DEADCODE_DEADSTORES = YES;
 				CLANG_ENABLE_OBJC_ARC = NO;
+				CLANG_WARN_CXX0X_EXTENSIONS = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Better-Adium-File-Sharing/Better-Adium-File-Sharing-Prefix.pch";
+				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = YES;
+				GCC_WARN_ABOUT_INVALID_OFFSETOF_MACRO = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VALUE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IBC_WARNINGS = YES;
 				INFOPLIST_FILE = "Better-Adium-File-Sharing/Better-Adium-File-Sharing-Info.plist";
 				INSTALL_PATH = "$(HOME)/Library/Application Support/Adium 2.0/PlugIns/";
 				ONLY_ACTIVE_ARCH = YES;

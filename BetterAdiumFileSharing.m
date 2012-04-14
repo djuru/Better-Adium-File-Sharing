@@ -22,11 +22,20 @@
 #define	ICON_TITLE                  @"Better Adium File Sharing"
 #define	ICON_TOOLTIP                @"Share via Dropbox"
 
+@interface BetterAdiumFileSharing() 
+
+- (NSString *) unifyName: (NSString *)name : (NSString *)pathToDropboxPublicDirectory;
+- (void) copyFiles: (NSArray *)files;
+- (void) chooseFilesToSend:(id)sender;
+- (void) sendMessage: (NSString *) message; 
+
+@end
+
 @implementation BetterAdiumFileSharing
 
 /*
  * * * * * * * * * * * * * * * * * * * * * 
-    Returns Plugin Author
+ Returns Plugin Author
  * * * * * * * * * * * * * * * * * * * * *
  */
 - (NSString *)pluginAuthor {
@@ -34,7 +43,7 @@
 }
 /*
  * * * * * * * * * * * * * * * * * * * * * 
-    Returns webpages about plugin
+ Returns webpages about plugin
  * * * * * * * * * * * * * * * * * * * * *
  */
 - (NSString *)pluginURL {
@@ -43,7 +52,7 @@
 
 /*
  * * * * * * * * * * * * * * * * * * * * * 
-    Returns plugin version
+ Returns plugin version
  * * * * * * * * * * * * * * * * * * * * *
  */
 - (NSString *)pluginVersion {
@@ -52,7 +61,7 @@
 
 /*
  * * * * * * * * * * * * * * * * * * * * * 
-    Returns plugin description
+ Returns plugin description
  * * * * * * * * * * * * * * * * * * * * *
  */
 - (NSString *)pluginDescription {
@@ -61,7 +70,7 @@
 
 /*
  * * * * * * * * * * * * * * * * * * * * * 
-    Do during installing plugin
+ Do during installing plugin
  * * * * * * * * * * * * * * * * * * * * *
  */
 - (void) installPlugin
@@ -71,14 +80,14 @@
     
     //Set icon for plugin
     NSToolbarItem	*chatItem = [AIToolbarUtilities toolbarItemWithIdentifier: TOOLBAR_ICON_IDENTIFIER
-                                                                        label: ICON_TITLE
-                                                                 paletteLabel: ICON_TOOLTIP
-                                                                      toolTip: ICON_TOOLTIP
-                                                                       target:self
-                                                             settingSelector:@selector(setImage:)
+                                                                      label: ICON_TITLE
+                                                               paletteLabel: ICON_TOOLTIP
+                                                                    toolTip: ICON_TOOLTIP
+                                                                     target:self
+                                                            settingSelector:@selector(setImage:)
                                                                 itemContent:[NSImage imageNamed:@"icon" forClass:[self class] loadLazily:YES]
                                                                      action:@selector(chooseFilesToSend:)
-                                                            menu:nil];
+                                                                       menu:nil];
     [[adium toolbarController] registerToolbarItem:chatItem forToolbarType:@"ListObject"];
     
 }
@@ -93,46 +102,12 @@
 
 /*
  * * * * * * * * * * * * * * * * * * * * * 
-  Opens dialog for choosing files to send
- * * * * * * * * * * * * * * * * * * * * *
- */
-- (void)chooseFilesToSend:(id)sender 
-{
-    // Create a File Open Dialog
-    NSOpenPanel* openDlg = [NSOpenPanel openPanel];
-    // Enable options in the dialog.
-    [openDlg setCanChooseFiles:YES];
-    [openDlg setAllowsMultipleSelection:YES];
-    [openDlg setPrompt:  @"Send"];
-     
-
-    // If the SEND pressed, process the files
-    if ( [openDlg runModal] == NSOKButton ) {
-        
-        // Gets list of all files selected
-        NSArray *files = [openDlg URLs];
-        
-        // ========== copy files ==========
-
-        //send all links to user
-        for( int i = 0; i < [files count]; i++ ) 
-        {
-            NSString  *message; //[[files objectAtIndex:i] path]
-            //create message
-            //send message
-        }
-    }
-    
-}
-
-/*
- * * * * * * * * * * * * * * * * * * * * * 
-  Sends message to current user in dialog
+ Sends message to current user in dialog
  * * * * * * * * * * * * * * * * * * * * *
  */
 -(void) sendMessage: (NSString *) message 
 {
-
+    
     AIListContact *contact = [[[adium interfaceController] activeChat] listObject]; 
     NSAttributedString *messageAttrStr = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:message]];
     AIAccount *account = [[adium accountController] preferredAccountForSendingContentType:CONTENT_MESSAGE_TYPE toContact:contact];
@@ -140,24 +115,134 @@
     AIContentMessage *message2 = [[AIContentMessage alloc] initWithChat:chat source:account destination:contact date:[NSDate date] message:messageAttrStr];
     
     [[adium contentController] sendContentObject:message2];
+    
+    
+}
 
-
+/*
+ * * * * * * * * * * * * * * * * * * * * * 
+ Opens dialog for choosing files to send
+ * * * * * * * * * * * * * * * * * * * * *
+ */
+- (void)chooseFilesToSend:(id)sender 
+{
+    
+    // Create a File Open Dialog
+    NSOpenPanel* openDlg = [NSOpenPanel openPanel];
+    // Enable options in the dialog.
+    [openDlg setCanChooseFiles:YES];
+    [openDlg setAllowsMultipleSelection:YES];
+    [openDlg setPrompt:  @"Send"];
+    
+    
+    // If the SEND pressed, process the files
+    if ( [openDlg runModal] == NSOKButton ) {
+        
+        // Gets list of all files selected
+        NSArray *files = [openDlg URLs];
+        [self copyFiles:files];
+        
+    }
+    
 }
 /*
  * * * * * * * * * * * * * * * * * * * * * 
-  Copy all files do Dropbox Public folder
+ Copy all files do Dropbox Public folder 
+ -- detached thread
  * * * * * * * * * * * * * * * * * * * * *
  */
 -(void) copyFiles: (NSArray *)files
 {
+    NSString* dropboxPublicDirectory = [[adium preferenceController] preferenceForKey: DROPBOX_PATH group: PREF_GROUP_BAS]; 
+    NSString *dropboxID =  [[adium preferenceController] preferenceForKey: DROPBOX_USER_ID group: PREF_GROUP_BAS];
+    
     //iterate over all files
     for( int i = 0; i < [files count]; i++ ) 
-    {
-        NSString* filePath = [[files objectAtIndex:i] path];
-        // ==========  copy them  ========== 
+    {        
         
+        NSString* fileToSendPath = [[files objectAtIndex:i] path]; 
+        NSString* fileToSendName = [[fileToSendPath componentsSeparatedByString:@"/"] lastObject];
+        NSString* fileToSendNewName = [self unifyName:fileToSendName :dropboxPublicDirectory];
+        NSString* toCopy = [dropboxPublicDirectory stringByAppendingFormat:@"/%@", fileToSendNewName];
+
+        NSError *error = nil;
+        //error while copying
+        if (![[NSFileManager defaultManager] copyItemAtPath:fileToSendPath toPath:toCopy error:&error])
+        {
+            
+            NSString *question =error.localizedFailureReason;
+            NSString *info = error.localizedDescription;
+            NSString *cancelButton = NSLocalizedString(@"Cancel", 
+                                                       @"Cancel button title");
+            
+            NSAlert *alert = [[NSAlert alloc] init];
+            [alert setMessageText:question];
+            [alert setInformativeText:info];
+            [alert addButtonWithTitle:cancelButton];
+            
+            NSInteger answer = [alert runModal];
+            [alert release];
+            alert = nil;
+        }
+        //copying succeeded    
+        else
+        {    
+            NSString* msg = @"Link will be shortly available: ";
+            msg = [msg stringByAppendingFormat:@"%@", @"http://dl.dropbox.com/u/"];
+            msg = [msg stringByAppendingFormat:@"%@", dropboxID];
+            msg = [msg stringByAppendingFormat:@"%@", @"/"];
+            msg = [msg stringByAppendingFormat:@"%@", fileToSendNewName];      
+            
+            [self sendMessage:msg];
+
+        }
     }
 }
-
+/*
+ * * * * * * * * * * * * * * * * * * * * * 
+ Generate uniq name and removes white spaces
+ * * * * * * * * * * * * * * * * * * * * *
+ */
+-(NSString *) unifyName: (NSString *)fileName : (NSString *)pathToDropboxPublicDirectory
+{
+    
+    NSFileManager *fileManager =  fileManager = [NSFileManager defaultManager];
+    
+    NSString *newName = fileName;
+    
+    //remove white spaces
+    newName = [newName stringByReplacingOccurrencesOfString:@" " withString:@""];  
+    
+    //if file exists rename
+    while([fileManager fileExistsAtPath: [pathToDropboxPublicDirectory stringByAppendingFormat:@"/%@", newName]]){
+        
+        
+        //create timestamp with random number
+        NSDate *currDate = [NSDate date];
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+        [dateFormatter setDateFormat:@"YYYY-MM-dd"];
+        NSString *dateString = [dateFormatter stringFromDate:currDate];
+        dateString = [dateString stringByAppendingFormat:@"%@", @"_"];
+        dateString = [dateString stringByAppendingFormat:@"%@", [NSString stringWithFormat:@"%d", arc4random() % 1000000]];
+        
+        NSArray *chunks = [fileName componentsSeparatedByString: @"."];
+        NSString *name = [chunks objectAtIndex:0];
+        NSString* ending = [chunks lastObject];
+        
+        //new name = <original_name_without_whitespaces>_<timestamp>_<rand_number>.<ending>
+        newName = @"";
+        newName = [newName stringByAppendingFormat:@"%@", name];        //<name>
+        newName = [newName stringByAppendingFormat:@"%@", @"_"];        //<name>_
+        newName = [newName stringByAppendingFormat:@"%@", dateString];  //<name>_<timeStamp>
+        newName = [newName stringByAppendingFormat:@"%@", @"."];        //<name>_<timeStamp>.
+        newName = [newName stringByAppendingFormat:@"%@", ending];      //<name>_<timeStamp>.<ending>
+        
+        
+        
+    }
+    
+    return newName;
+    
+}
 
 @end
