@@ -392,6 +392,14 @@
 					<int key="connectionID">226</int>
 				</object>
 				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">dropboxUIDTextField</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="10146838"/>
+					</object>
+					<int key="connectionID">227</int>
+				</object>
+				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
 						<string key="label">value: duid</string>
 						<reference key="source" ref="10146838"/>
@@ -641,7 +649,6 @@
 					<string>66.IBPluginDependency</string>
 					<string>97.IBAttributePlaceholdersKey</string>
 					<string>97.IBPluginDependency</string>
-					<string>97.userInterfaceItemIdentifier</string>
 					<string>98.IBAttributePlaceholdersKey</string>
 					<string>98.IBPluginDependency</string>
 					<string>99.IBPluginDependency</string>
@@ -685,7 +692,6 @@
 						</object>
 					</object>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>dropboxUIDTextField</string>
 					<object class="NSMutableDictionary">
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<reference key="dict.sortedKeys" ref="0"/>
@@ -707,7 +713,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">226</int>
+			<int key="maxID">227</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -772,14 +778,35 @@
 					<string key="className">SFPreferences</string>
 					<string key="superclassName">AIAdvancedPreferencePane</string>
 					<object class="NSMutableDictionary" key="outlets">
-						<string key="NS.key.0">textPath</string>
-						<string key="NS.object.0">NSTextField</string>
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSArray" key="dict.sortedKeys">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>dropboxUIDTextField</string>
+							<string>textPath</string>
+						</object>
+						<object class="NSMutableArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>NSTextField</string>
+							<string>NSTextField</string>
+						</object>
 					</object>
 					<object class="NSMutableDictionary" key="toOneOutletInfosByName">
-						<string key="NS.key.0">textPath</string>
-						<object class="IBToOneOutletInfo" key="NS.object.0">
-							<string key="name">textPath</string>
-							<string key="candidateClassName">NSTextField</string>
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSArray" key="dict.sortedKeys">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>dropboxUIDTextField</string>
+							<string>textPath</string>
+						</object>
+						<object class="NSMutableArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<object class="IBToOneOutletInfo">
+								<string key="name">dropboxUIDTextField</string>
+								<string key="candidateClassName">NSTextField</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">textPath</string>
+								<string key="candidateClassName">NSTextField</string>
+							</object>
 						</object>
 					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
