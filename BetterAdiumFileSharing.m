@@ -222,7 +222,7 @@
         else
         {    
             //create link and send it to user
-            NSString* msg = @"Link for download will be available soon: ";
+            NSString* msg = @"File for download will be available soon: ";
             msg = [msg stringByAppendingFormat:@"%@", @"http://dl.dropbox.com/u/"];
             msg = [msg stringByAppendingFormat:@"%@", dropboxID];
             msg = [msg stringByAppendingFormat:@"%@", @"/"];

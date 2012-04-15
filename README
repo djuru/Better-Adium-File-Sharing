@@ -3,3 +3,14 @@ Adium plugin for sharing files via Dropbox Public Link.
 Project webpages:
 ================
 http://betteradiumfiles.murin.cz/
+
+How it works?
+=============
+You just choose files and then plugin copy files to Public folder and send link to your friend.
+
+TODO
+====
+- Copy files in new thread.
+- Localization.
+- Customizable text in message.
+- Dropbox API.
