@@ -139,19 +139,21 @@ static SFPreferences	*sharedInstance = nil;
 - (void)viewDidLoad
 {
     
+    path = [[adium preferenceController] preferenceForKey: DROPBOX_PATH group: PREF_GROUP_BAS];
+    duid = [[adium preferenceController] preferenceForKey: DROPBOX_USER_ID group: PREF_GROUP_BAS];
     
-    //load Dropbox User ID
-    [dropboxUIDTextField setStringValue: [[adium preferenceController] preferenceForKey: DROPBOX_USER_ID group: PREF_GROUP_BAS]];
-    
-    //Load path to Dropbox public folder
-    [textPath setStringValue: [[adium preferenceController] preferenceForKey: DROPBOX_PATH group: PREF_GROUP_BAS]]; 
-    
+    if ([duid length] > 0) {
+         [dropboxUIDTextField setStringValue: duid];
+    }
+    if ([path length] > 0) {
+        [textPath setStringValue: path];
+    }
     
 	[super viewDidLoad];
 }
 /*
  * * * * * * * * * * * * * * * * * * * * * 
-    Open webpages with guide
+    Open webpages with user guide
  * * * * * * * * * * * * * * * * * * * * *
  */
 - (IBAction)openPage:(id)sender 
